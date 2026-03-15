@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(#020024,#090979,#000);
+font-family:sans-serif;
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+/* bintang */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:blink 2s infinite;
+}
+
+@keyframes blink{
+0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
+}
+
+/* tombol buka */
+
+#open{
+font-size:22px;
+cursor:pointer;
+padding:15px 25px;
+border:2px solid white;
+border-radius:30px;
+}
+
+/* ucapan */
+
+#message{
+position:absolute;
+top:15%;
+font-size:26px;
+opacity:0;
+transition:1s;
+}
+
+/* bunga */
+
+.flower{
+position:absolute;
+bottom:120px;
+transform:scale(0);
+animation:grow 3s forwards;
+}
+
+@keyframes grow{
+to{transform:scale(1)}
+}
+
+.petal{
+position:absolute;
+width:60px;
+height:60px;
+background:#9be7ff;
+border-radius:50%;
+}
+
+.p1{top:-30px;left:0}
+.p2{left:-30px;top:0}
+.p3{right:-30px;top:0}
+.p4{bottom:-30px;left:0}
+
+.center{
+width:50px;
+height:50px;
+background:#fff176;
+border-radius:50%;
+position:absolute;
+top:-5px;
+left:-5px;
+}
+
+.stem{
+position:absolute;
+width:8px;
+height:150px;
+background:#4caf50;
+bottom:-150px;
+left:25px;
+}
+
+.leaf{
+width:40px;
+height:20px;
+background:#4caf50;
+position:absolute;
+border-radius:20px;
+}
+
+.leaf1{left:-35px;bottom:-70px;transform:rotate(-30deg)}
+.leaf2{left:30px;bottom:-100px;transform:rotate(30deg)}
+
+</style>
+</head>
+
+<body>
+
+<div id="open" onclick="start()">Klik untuk mulai 💚</div>
+
+<div id="message"></div>
+
+<div class="flower" id="flower">
+
+<div class="petal p1"></div>
+<div class="petal p2"></div>
+<div class="petal p3"></div>
+<div class="petal p4"></div>
+
+<div class="center"></div>
+
+<div class="stem"></div>
+
+<div class="leaf leaf1"></div>
+<div class="leaf leaf2"></div>
+
+</div>
+
+<audio id="music" loop>
+<source src="musik.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* bintang background */
+
+for(let i=0;i<80;i++){
+let star=document.createElement("div")
+star.className="star"
+star.style.left=Math.random()*100+"%"
+star.style.top=Math.random()*100+"%"
+document.body.appendChild(star)
+}
+
+/* ucapan */
+
+let texts=[
+"Hai kamu 🌙",
+"Aku cuma mau bilang sesuatu",
+"Terima kasih sudah hadir",
+"Kamu itu spesial",
+"Semoga harimu selalu indah ✨"
+]
+
+let i=0
+
+function start(){
+
+document.getElementById("open").style.display="none"
+
+document.getElementById("music").play()
+
+let msg=document.getElementById("message")
+msg.style.opacity=1
+
+showText()
+
+}
+
+function showText(){
+
+if(i<texts.length){
+
+document.getElementById("message").innerHTML=texts[i]
+
+i++
+
+setTimeout(showText,3000)
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
